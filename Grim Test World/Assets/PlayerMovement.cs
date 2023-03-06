@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     bool isJumping;
     float moveHorizontal;
     float moveVertical;
+    float isFalling;
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +27,23 @@ public class PlayerMovement : MonoBehaviour
     {
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         moveVertical = Input.GetAxisRaw("Vertical");
+        //isFalling = Input.GetAxisRaw("Vertical");
 
         animator.SetFloat("Horizontal", moveHorizontal);
+        animator.SetFloat("Vertical", moveVertical);
+        //animator.SetFloat("Falling", isFalling);
+
+        if (isJumping == true)
+        {
+            animator.SetBool("Jumping", true);
+        }
+
+        if (isJumping == false)
+        {
+            animator.SetBool("Jumping", false);
+        }
+        
+
     }
 
     private void FixedUpdate()
